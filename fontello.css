@@ -29,16 +29,40 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* * 具体图标编码（保留原样）
- * 请确保下面的 \exxx 编码与你模板中要求的图标一致
- */
-.icon-menu:before { content: '\e800'; }
-.icon-search:before { content: '\e801'; }
-.icon-user:before { content: '\e802'; }
-.icon-play:before { content: '\e803'; }
+/* 图标具体定义 - 完全保留原始逻辑 */
+.icon-calendar-empty:before { content: '\e800'; }
+.icon-rss:before { content: '\e801'; }
+.icon-tags:before { content: '\e802'; }
+.icon-flag:before { content: '\e803'; }
 .icon-clock:before { content: '\e804'; }
-.icon-right-open:before { content: '\e805'; }
-.icon-left-open:before { content: '\e806'; }
-.icon-down-open:before { content: '\e807'; }
-.icon-up-open:before { content: '\e808'; }
-.icon-home:before { content: '\e809'; }
+.icon-doc-text:before { content: '\e805'; }
+.icon-thumbs-up:before { content: '\e806'; }
+.icon-thumbs-down:before { content: '\e807'; }
+.icon-thumbs-up-alt:before { content: '\e808'; }
+.icon-thumbs-down-alt:before { content: '\e809'; }
+.icon-folder:before { content: '\e80a'; }
+.icon-monitor:before { content: '\e80b'; }
+.icon-bookmark:before { content: '\e80c'; }
+.icon-bookmark-empty:before { content: '\e80d'; }
+.icon-tag:before { content: '\e80e'; }
+.icon-search:before { content: '\e80f'; }
+.icon-angle-down:before { content: '\e810'; }
+.icon-angle-up:before { content: '\e811'; }
+.icon-up-open:before { content: '\e812'; }
+.icon-down-open:before { content: '\e813'; }
+.icon-left-open:before { content: '\e814'; }
+.icon-right-open:before { content: '\e815'; }
+.icon-angle-left:before { content: '\e816'; }
+.icon-angle-right:before { content: '\e817'; }
+.icon-right-dir:before { content: '\e818'; }
+.icon-left-dir:before { content: '\e819'; }
+.icon-up-dir:before { content: '\e81a'; }
+.icon-down-dir:before { content: '\e81b'; }
+.icon-heart:before { content: '\e81c'; }
+.icon-heart-empty:before { content: '\e81d'; }
+.icon-menu:before { content: '\e81e'; }
+.icon-ok:before { content: '\e81f'; }
+.icon-cancel:before { content: '\e820'; }
+.icon-cancel-circled:before { content: '\e821'; }
+.icon-eye:before { content: '\e822'; }
+.icon-eye-off:before { content: '\e823'; }
