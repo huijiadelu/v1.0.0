@@ -1,6 +1,6 @@
 (function() {
     // 1. 样式定义 (封装进 JS，调用站不需要额外写 CSS)
-    var css = `
+  var css = `
     :root {
         --main-color: #ff516b;
         --sub-color: #8876ea;
@@ -12,21 +12,55 @@
         --shadow-normal: 0 2px 8px rgba(0,0,0,0.1);
         --transition: all 0.3s ease;
     }
-    .remote-navi { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; width:100%; margin:10px auto; padding:10px 0; background: #fff; border-radius: var(--radius-main); box-shadow: var(--shadow-normal); }
-    .remote-appico { flex:0 0 calc(12.5% - 15px); max-width:calc(12.5% - 15px); text-align:center; transition:var(--transition); }
-    .remote-appico a { text-decoration:none; display:block; }
-    .remote-appico img { width:50px; height:50px; border-radius:10px; object-fit:cover; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    .remote-appico p { color:var(--text-color); margin:5px 0 0; font-size:13px; white-space:nowrap; overflow:hidden; }
-    .remote-ad-container { width:100%; margin:10px auto; background:#fff; border-radius:var(--radius-main); box-shadow:var(--shadow-normal); padding:8px; box-sizing:border-box; }
-    .remote-ad-list { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; }
-    .remote-ad-item { flex:0 0 calc(10% - 6px); max-width:calc(10% - 6px); height:36px; display:flex; align-items:center; justify-content:center; background:var(--bg-light); border:1px solid var(--border-color); border-radius:6px; transition:var(--transition); }
-    .remote-ad-item a { color:var(--text-color); text-decoration:none; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:90%; text-align:center; }
-    .remote-ad-item:hover { background:var(--bg-hover); transform:translateY(-2px); }
-    .remote-ad-item:hover a { color:#fff !important; }
+    /* 统一容器样式 */
+    .remote-navi, .remote-ad-container { 
+        width: 100%; 
+        max-width: 1200px; /* 如果需要限制最大宽度可加这行 */
+        margin: 10px auto; 
+        background: #fff; 
+        border-radius: var(--radius-main); 
+        box-shadow: var(--shadow-normal); 
+        box-sizing: border-box; /* 确保 padding 不撑开宽度 */
+        padding: 15px; 
+    }
+
+    /* 图标区对齐优化 */
+    .remote-navi { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+    .remote-appico { 
+        flex: 1; /* 自动撑开 */
+        min-width: 80px; /* 最小宽度防止太挤 */
+        max-width: calc(12.5% - 10px); 
+        text-align: center; 
+        transition: var(--transition); 
+    }
+    .remote-appico a { text-decoration: none; display: block; }
+    .remote-appico img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .remote-appico p { color: var(--text-color); margin: 5px 0 0; font-size: 13px; white-space: nowrap; }
+
+    /* 文字广告区对齐优化 */
+    .remote-ad-list { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
+    .remote-ad-item { 
+        flex: 0 0 calc(10% - 8px); /* 10列布局，减去gap */
+        height: 36px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        background: var(--bg-light); 
+        border: 1px solid var(--border-color); 
+        border-radius: 6px; 
+        transition: var(--transition); 
+        box-sizing: border-box;
+    }
+    .remote-ad-item a { color: var(--text-color); text-decoration: none; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 90%; text-align: center; }
+    .remote-ad-item:hover { background: var(--bg-hover); transform: translateY(-2px); border-color: transparent; }
+    .remote-ad-item:hover a { color: #fff !important; }
+
+    /* 移动端适配：对齐依然保持一致 */
     @media (max-width: 768px) {
-        .remote-appico { flex:0 0 calc(25% - 10px); max-width:25%; }
-        .remote-ad-item { flex:0 0 calc(20% - 6px); max-width:20%; height:32px; }
-        .remote-ad-item a { font-size:11px; }
+        .remote-navi, .remote-ad-container { padding: 10px; }
+        .remote-appico { flex: 0 0 calc(25% - 10px); max-width: 25%; }
+        .remote-ad-item { flex: 0 0 calc(33.33% - 8px); height: 32px; } /* 手机端改3列更清晰 */
+        .remote-ad-item a { font-size: 11px; }
     }
     `;
 
@@ -34,8 +68,9 @@
     style.innerHTML = css;
     document.head.appendChild(style);
 
+
     // 2. 广告内容填充 (请把这里的 https://yourdomain.com 换成你自己的图片服务器域名)
-    var domain = "https://91pipi.cc"; // 你的主站域名
+   // var domain = "https://91pipi.cc"; // 你的主站域名
 
     var html = `
     <div class="remote-navi">
